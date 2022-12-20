@@ -11,10 +11,11 @@
     <TextView
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
+        android:textColor="@color/black"
         />
     <TextView
         android:id="@+id/edit_content"
@@ -25,6 +26,7 @@
         android:layout_marginTop="6dp"
         android:maxLines="2"
         android:ellipsize="end"
+        android:textColor="#AAA"
         />
 
     <LinearLayout
@@ -40,12 +42,14 @@
             android:layout_width="42dp"
             android:layout_height="wrap_content"
             android:text="댓글 수"
+            android:textColor="#AAA"
             />
         <TextView
             android:id="@+id/edit_date"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:textColor="#AAA"
             />
     </LinearLayout>
 

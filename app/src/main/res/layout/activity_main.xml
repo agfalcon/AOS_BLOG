@@ -21,7 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/user_view"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="400dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +58,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:text="안녕하세요. 개발자 김근범입니다."
+                    android:textColor="@color/black"
                     />
 
 
