@@ -1,5 +1,6 @@
 package com.plum.KGB.myapplication.View
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -34,5 +35,10 @@ class MainActivity : AppCompatActivity() {
             adapter = essayAdapter
         }
         essayViewModel.requestEssay()
+
+        binding.btnEdit.setOnClickListener {
+            val intent = Intent(this, EditActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

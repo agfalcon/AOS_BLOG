@@ -59,7 +59,7 @@ class CommentViewModel(application: Application) : AndroidViewModel (application
             val id = item.getInt("id")
             val editId = item.getInt("edit_id")
             val name = item.getString("name")
-            val date = item.getString("date")
+            val date = item.getString("date").replace("T","   ").replace(":00.000Z","")
             val content = item.getString("content")
             list.add(Comment(id, editId, name,content, date))
         }

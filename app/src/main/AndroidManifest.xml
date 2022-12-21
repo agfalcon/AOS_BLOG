@@ -15,6 +15,13 @@
         android:theme="@style/Theme.SMileLog"
         tools:targetApi="31">
         <activity
+            android:name=".View.EditActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View.CommentActivity"
             android:exported="false">
             <meta-data

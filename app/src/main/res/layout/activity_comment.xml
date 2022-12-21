@@ -65,6 +65,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="6dp"
             android:hint="닉네임"
+            android:background="@null"
             />
         <EditText
             android:id="@+id/comment_edit"
@@ -72,6 +73,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="내용 작성"
+            android:background="@null"
             />
         <Button
             android:id="@+id/btn_comment_send"
