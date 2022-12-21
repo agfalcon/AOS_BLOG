@@ -13,7 +13,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class CommentViewModel(application: Application) : AndroidViewModel (application) {
-    data class Comment(var id: Int, var editId: Int, var content: String, var date: String)
+    data class Comment(var id: Int, var editId: Int, var name: String, var content: String, var date: String)
 
     companion object{
         const val SERVER_URL = "https://sg-blog-db-lzrnx.run.goorm.io/comment"
@@ -42,7 +42,7 @@ class CommentViewModel(application: Application) : AndroidViewModel (application
                 list.clear()
                 parseJson(it)
                 _comments.value = list
-                Toast.makeText(getApplication(), list.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(getApplication(), list.toString(), Toast.LENGTH_LONG).show()
 
             },
             {
@@ -58,9 +58,10 @@ class CommentViewModel(application: Application) : AndroidViewModel (application
             val item = items[i] as JSONObject
             val id = item.getInt("id")
             val editId = item.getInt("edit_id")
+            val name = item.getString("name")
             val date = item.getString("date")
             val content = item.getString("content")
-            list.add(Comment(id, editId, content, date))
+            list.add(Comment(id, editId, name,content, date))
         }
     }
 
