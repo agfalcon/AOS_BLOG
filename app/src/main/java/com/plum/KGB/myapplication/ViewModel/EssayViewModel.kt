@@ -17,7 +17,7 @@ class EssayViewModel(application: Application) : AndroidViewModel(application) {
     data class Essay(var id: Int, var title: String, var content: String, var date: String, var commentNum: Int) : Serializable
 
     companion object{
-        const val SERVER_URL = "https://sg-blog-db-lzrnx.run.goorm.io/edit"
+        const val SERVER_URL = "https://sg-blog-db-lzrnx.run.goorm.io/essay"
         const val QUEUE_TAG = "EssayQueueTag"
     }
 
