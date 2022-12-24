@@ -29,7 +29,8 @@ class EditShowActivity : AppCompatActivity() {
             if(it.resultCode != RESULT_OK)
                 return@registerForActivityResult
 
-
+            val num = it.data?.getIntExtra("comment_num", essay.commentNum)
+            binding.editShowComment.text = num.toString()
         }
 
         initEdit()

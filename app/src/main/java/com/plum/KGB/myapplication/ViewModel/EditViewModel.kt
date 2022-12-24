@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley.newRequestQueue
 import org.json.JSONObject
 import java.time.LocalDate
+import java.util.*
 
 class EditViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,6 +24,7 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
         const val QUEUE_TAG = "EditQueueTag"
     }
 
+    private val content = Content("","")
     private val _essays = MutableLiveData<Content>()
     private val editData = JSONObject()
     val essays : LiveData<Content>
@@ -31,8 +33,21 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
     private val queue: RequestQueue
 
     init{
+        _essays.value = content
         queue = newRequestQueue(getApplication())
     }
+
+
+    fun getTitle(title:String){
+        content.title = title
+        _essays.value = content
+    }
+
+    fun getContent(con:String){
+        content.content = con
+        _essays.value = content
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun requestEdit(){
@@ -53,7 +68,6 @@ class EditViewModel(application: Application) : AndroidViewModel(application) {
         )
         request.tag = QUEUE_TAG
         queue.add(request)
-        _essays.value = null
     }
 
     override fun onCleared() {

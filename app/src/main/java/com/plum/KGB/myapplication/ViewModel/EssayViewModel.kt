@@ -58,7 +58,7 @@ class EssayViewModel(application: Application) : AndroidViewModel(application) {
             val item = items[i] as JSONObject
             val id = item.getInt("id")
             val title = item.getString("title")
-            val date = item.getString("date").replace("T00:00:00.000Z", "")
+            val date = item.getString("date")
             val content = item.getString("content")
             val commentNum = item.getInt("comment_num")
             list.add(Essay(id, title, content, date, commentNum))

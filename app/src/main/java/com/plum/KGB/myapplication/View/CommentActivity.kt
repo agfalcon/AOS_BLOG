@@ -1,7 +1,10 @@
 package com.plum.KGB.myapplication.View
 
+import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +22,18 @@ class CommentActivity : AppCompatActivity() {
     var commentNum: Int = 0
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCommentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        commentNum = intent.getIntExtra(EditShowActivity.COMMENT_NUM, 0)
+        editID = intent.getIntExtra(EssayAdapter.EDIT_ID, 0)
+
         model = ViewModelProvider(this)[CommentViewModel::class.java]
+        model.getEditID(editID)
         commentAdapter = CommentAdapter(model)
 
         binding.commentList.apply{
@@ -38,8 +47,28 @@ class CommentActivity : AppCompatActivity() {
             commentAdapter.notifyDataSetChanged()
         }
 
-        commentNum = intent.getIntExtra(EditShowActivity.COMMENT_NUM, 0)
-        editID = intent.getIntExtra(EssayAdapter.EDIT_ID, 0)
+
         model.requestComment(editID)
+
+        binding.btnCommentSend.setOnClickListener {
+            model.sendComment(binding.commentName.text.toString(), binding.commentEdit.text.toString())
+            binding.commentName.setText("")
+            binding.commentEdit.setText("")
+            model.requestComment(editID)
+            commentNum++
+        }
+
+        binding.commentBtnBack.setOnClickListener {
+            val intent = Intent(this, EditActivity::class.java)
+            //startActivity(intent)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val intent = Intent()
+        intent.putExtra("comment_num", commentNum)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }
