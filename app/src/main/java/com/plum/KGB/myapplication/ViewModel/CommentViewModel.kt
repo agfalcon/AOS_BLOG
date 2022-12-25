@@ -59,7 +59,7 @@ class CommentViewModel(application: Application) : AndroidViewModel (application
             POST_SERVER_URL,
             commentData,
             {
-                Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()
             },
             {
                 Toast.makeText(getApplication(), it.toString(), Toast.LENGTH_LONG).show()

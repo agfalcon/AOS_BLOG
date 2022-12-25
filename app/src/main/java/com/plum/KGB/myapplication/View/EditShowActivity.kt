@@ -51,8 +51,9 @@ class EditShowActivity : AppCompatActivity() {
 
         binding.btnComment.setOnClickListener {
             val intent = Intent(this, CommentActivity::class.java)
-            intent.putExtra(EssayAdapter.EDIT_ID, essay.id)
-            intent.putExtra(COMMENT_NUM, essay.commentNum)
+            intent.putExtra(EssayAdapter.EDIT_ID, essay)
+            //intent.putExtra(EssayAdapter.EDIT_ID, essay.id)
+            //intent.putExtra(COMMENT_NUM, essay.commentNum)
             launcher.launch(intent)
         }
 

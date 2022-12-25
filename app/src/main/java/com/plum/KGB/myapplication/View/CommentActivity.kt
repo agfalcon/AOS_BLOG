@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.plum.KGB.myapplication.Adapter.CommentAdapter
 import com.plum.KGB.myapplication.Adapter.EssayAdapter
 import com.plum.KGB.myapplication.ViewModel.CommentViewModel
+import com.plum.KGB.myapplication.ViewModel.EssayViewModel
 import com.plum.KGB.myapplication.databinding.ActivityCommentBinding
 
 class CommentActivity : AppCompatActivity() {
@@ -20,6 +21,7 @@ class CommentActivity : AppCompatActivity() {
     lateinit var commentAdapter: CommentAdapter
     private var editID: Int = 0
     var commentNum: Int = 0
+    lateinit var essay: EssayViewModel.Essay
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -28,9 +30,14 @@ class CommentActivity : AppCompatActivity() {
         binding = ActivityCommentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        essay = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getSerializableExtra(EssayAdapter.EDIT_ID, EssayViewModel.Essay::class.java) ?: EssayViewModel.Essay(0, "", "", "", 0)
+        } else{
+            intent.getSerializableExtra(EssayAdapter.EDIT_ID) as EssayViewModel.Essay
+        }
 
-        commentNum = intent.getIntExtra(EditShowActivity.COMMENT_NUM, 0)
-        editID = intent.getIntExtra(EssayAdapter.EDIT_ID, 0)
+        commentNum = essay.commentNum
+        editID = essay.id
 
         model = ViewModelProvider(this)[CommentViewModel::class.java]
         model.getEditID(editID)
@@ -55,12 +62,13 @@ class CommentActivity : AppCompatActivity() {
             binding.commentName.setText("")
             binding.commentEdit.setText("")
             model.requestComment(editID)
-            commentNum++
+            essay.commentNum++
         }
 
         binding.commentBtnBack.setOnClickListener {
-            val intent = Intent(this, EditActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, EditShowActivity::class.java)
+            intent.putExtra(EssayAdapter.EDIT_ID, essay)
+            startActivity(intent)
         }
     }
 
