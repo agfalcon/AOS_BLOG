@@ -30,7 +30,7 @@ CREATE TABLE edit (
   content VARCHAR(1000) NOT NULL,
   date VARCHAR(32) NOT NULL,
   PRIMARY KEY (id),
-      FOREIGN KEY(edit_id) REFERENCES edit(id)
+      FOREIGN KEY(edit_id) REFERENCES edit(id) ON DELETE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARACTER SET utf8 
   DEFAULT COLLATE utf8_general_ci;

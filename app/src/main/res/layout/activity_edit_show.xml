@@ -89,5 +89,30 @@
             android:layout_marginBottom="2dp"
             android:textColor="@color/black"
             />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btn_reedit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="수정"
+            android:textSize="24sp"
+            android:layout_gravity="center_vertical"
+            />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="삭제"
+            android:textSize="24sp"
+            android:layout_gravity="center_vertical"
+            />
     </LinearLayout>
 </LinearLayout>

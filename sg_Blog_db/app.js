@@ -37,6 +37,16 @@ app.get('/comment/:edit_id', (req, res)=>{
 	})
 })
 
+app.get('/delete/:id', (req,res)=>{
+	const id = Number(req.params.id)
+	console.log(id)
+	const query = 'DELETE FROM edit WHERE id = ?'
+	dbBlog.query(query, id, (err, rows)=>{
+		if(err) return console.log(err)
+		res.send(rows)
+	})
+})
+
 //app.use(express.json())
  app.post('/edit', (req, res)=>{
 	 var editData

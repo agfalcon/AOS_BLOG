@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
 import com.plum.KGB.myapplication.Adapter.EssayAdapter
+import com.plum.KGB.myapplication.ViewModel.EditShowViewModel
 import com.plum.KGB.myapplication.ViewModel.EssayViewModel
 import com.plum.KGB.myapplication.databinding.ActivityEditShowBinding
 
@@ -15,6 +17,7 @@ class EditShowActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditShowBinding
     private lateinit var essay: EssayViewModel.Essay
     private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var model : EditShowViewModel
 
     companion object{
         const val COMMENT_NUM = "commentNum"
@@ -24,6 +27,8 @@ class EditShowActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditShowBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        model = ViewModelProvider(this)[EditShowViewModel::class.java]
 
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode != RESULT_OK)
@@ -58,6 +63,12 @@ class EditShowActivity : AppCompatActivity() {
         }
 
         binding.btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnDelete.setOnClickListener {
+            model.deleteRequest(essay.id)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
