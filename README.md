@@ -2,8 +2,9 @@
 
 ## 기술스택
 - kotlin 1.7.20
+- Android
 - Express
-- MYSQL
+- MySQL
 
 ## 프로젝트 개요
 ### - 안드로이드 기반 블로그 어플리케이션
